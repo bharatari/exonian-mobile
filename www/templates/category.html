@@ -1,0 +1,27 @@
+<ion-view>
+    <ion-nav-bar class="bar-assertive nav-title-slide-ios7">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon nav-button" menu-toggle="left">
+            </button>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            <p>{{Title}}</p>
+        </ion-nav-title>
+    </ion-nav-bar>
+    <ion-content>
+        <ion-list>
+            <div class="post-list-category">
+                <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}">
+                    <p class="article-title" ng-bind-html="Post.title"></p>
+                    <span class="article-author-subtitle">{{Post.Author}}</span>
+                </ion-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="checkData()"
+            icon="ion-loading-c"
+            on-infinite="loadMore()">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+

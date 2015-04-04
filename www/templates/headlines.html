@@ -1,0 +1,36 @@
+<ion-view>
+  <ion-nav-bar class="bar-stable nav-bar-large image-background">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-clear ion-navicon nav-button nav-button-top" menu-toggle="left">
+          </button>
+          <button class="button button-small" ng-click="search(searchTerm)">
+              <i class="ion-search"></i>
+          </button>
+      </ion-nav-buttons>      
+      <div class="right-logo">
+          <p class="brand-logo">THE EXONIAN</p>
+      </div>
+      <div class="overlay"></div>
+      <div class="headline">
+          <p class="headline-text" ng-click="goToHeadline(Featured)">{{Featured.title}}</p>
+      </div>
+  </ion-nav-bar>
+  <ion-content>
+      <ion-list>
+          <div class="post-list">
+              <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}">
+                  <p class="article-title" ng-bind-html="Post.title"></p>
+                  <p class="article-headline-author">{{Post.Author}}</p>
+                  <div class="article-subtitle-background">
+                      <span class="article-subtitle">{{Post.categories[0].title}}</span>
+                  </div>
+              </ion-item>
+          </div>
+      </ion-list>
+      <ion-infinite-scroll
+                           ng-if="checkData()"
+                           icon="ion-loading-c"
+                           on-infinite="loadMore()">
+      </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

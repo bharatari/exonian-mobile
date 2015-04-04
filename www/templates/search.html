@@ -1,0 +1,35 @@
+<ion-view>
+    <ion-nav-bar class="bar-assertive nav-title-slide-ios7">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon nav-button" menu-toggle="left">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content>
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input type="text" placeholder="Search" ng-model="searchTerm">
+            </label>
+            <button class="button button-small" ng-click="search(searchTerm)">
+                <i class="ion-search"></i>
+            </button>
+        </div>
+        <ion-list>
+            <div class="post-list-category">
+                <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}" ng-if="Posts.length > 1">
+                    <p class="article-title">{{Post.title}}</p>
+                    <div class="article-subtitle-background">
+                        <span class="article-subtitle">{{Post.categories[0].title}}</span>
+                    </div>
+                </ion-item>
+                <p class="no-results" ng-if="Posts.length < 1">No results.</p>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+                           ng-if="checkData()"
+                           icon="ion-loading-c"
+                           on-infinite="loadMore()">
+      </ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+
