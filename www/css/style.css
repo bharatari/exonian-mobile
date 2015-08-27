@@ -61,6 +61,7 @@
     margin-left: 16px;
     line-height: normal;
     margin-right: 17px;
+    margin-top: 20px;
 }
 
 .article-title {
@@ -180,6 +181,11 @@
 }
 
 .bold-inline {
+    font-weight: 600;
+}
+
+.pullquote {
+    font-size: 24px;
     font-weight: 600;
 }
 

@@ -3,16 +3,13 @@
       <ion-nav-buttons side="left">
           <button class="button button-icon button-clear ion-navicon nav-button nav-button-top" menu-toggle="left">
           </button>
-          <button class="button button-small" ng-click="search(searchTerm)">
-              <i class="ion-search"></i>
-          </button>
       </ion-nav-buttons>      
       <div class="right-logo">
           <p class="brand-logo">THE EXONIAN</p>
       </div>
       <div class="overlay"></div>
       <div class="headline">
-          <p class="headline-text" ng-click="goToHeadline(Featured)">{{Featured.title}}</p>
+          <p class="headline-text" ng-click="goToHeadline(Featured)" ng-bind-html="FeaturedTitle"></p>
       </div>
   </ion-nav-bar>
   <ion-content>

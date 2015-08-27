@@ -17,6 +17,11 @@ angular.module('ExonianMobile.controllers', ['ionic'])
     });
     PostsFactory.getFeaturedPost().success(function(response) {
         $scope.Featured = response.posts[0];
+        $scope.FeaturedTitle = $scope.Featured.title;
+        if($scope.FeaturedTitle.length > 40) {
+            $scope.FeaturedTitle = $scope.FeaturedTitle.substring(0, 40);
+            $scope.FeaturedTitle += "...";
+        }
         if($scope.Featured.attachments[0].url) {
             $('.nav-bar-large').css('background-image', 'url(' +       $scope.Featured.attachments[0].url + ')');            
         }
