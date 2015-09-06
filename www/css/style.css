@@ -87,6 +87,7 @@
 
 .platform-android .brand-logo {
     margin-top: 10px;
+    font-weight: 600;
 }
 
 .right-logo {
@@ -307,6 +308,22 @@
     letter-spacing: 0px;
 }
 
+.error-box {
+    position: relative;
+    /* Height Variable */
+    margin-top: 280px;
+}
+
+.error-message {
+    margin-left: 15px;
+    line-height: normal;
+    margin-top: 15px;
+    font-size: 32px;
+    font-weight: 300;
+    color: darkgray;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+}
+
 /* iPhone 5 and iPhone 4 screen sizes */
 @media only screen and (max-device-height : 570px) {
     .nav-bar-large {
@@ -323,5 +340,10 @@
     .post-list {
         /* Height Variable */
         margin-top: 155px;
+    }
+    
+    .error-box {
+        /* Height Variable */
+        margin-top: 180px;
     }
 }

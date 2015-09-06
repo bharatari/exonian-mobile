@@ -13,21 +13,31 @@
       </div>
   </ion-nav-bar>
   <ion-content>
-      <ion-list>
-          <div class="post-list">
-              <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}">
-                  <p class="article-title" ng-bind-html="Post.title"></p>
-                  <p class="article-headline-author">{{Post.Author}}</p>
-                  <div class="article-subtitle-background">
-                      <span class="article-subtitle">{{Post.categories[0].title}}</span>
-                  </div>
-              </ion-item>
-          </div>
-      </ion-list>
-      <ion-infinite-scroll
-                           ng-if="checkData()"
-                           spinner="android"
-                           on-infinite="loadMore()">
-      </ion-infinite-scroll>
+      <div ng-if="!error" class="post-list">
+          <ion-refresher 
+                         spinner="android"
+                         pulling-icon="'ion-android-arrow-down"
+                         on-refresh="refresh()">
+          </ion-refresher>
+          <ion-list>
+              <div>
+                  <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}">
+                      <p class="article-title" ng-bind-html="Post.title"></p>
+                      <p class="article-headline-author">{{Post.Author}}</p>
+                      <div class="article-subtitle-background">
+                          <span class="article-subtitle">{{Post.categories[0].title}}</span>
+                      </div>
+                  </ion-item>
+              </div>
+          </ion-list>
+          <ion-infinite-scroll
+                ng-if="checkData()"
+                spinner="android"
+                on-infinite="loadMore()">
+          </ion-infinite-scroll>
+      </div>
+      <div ng-if="error" class="error-box">
+          <p class="error-message">Check your internet connection and try again.</p>
+      </div>
   </ion-content>
 </ion-view>

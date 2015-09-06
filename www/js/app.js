@@ -22,7 +22,7 @@ angular.module('ExonianMobile', ['ionic', 'ExonianMobile.controllers', 'ExonianM
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   if(ionic.Platform.isAndroid()) {
-    $ionicConfigProvider.scrolling.jsScrolling(false);
+    //$ionicConfigProvider.scrolling.jsScrolling(false);
   }   
     
   $stateProvider
