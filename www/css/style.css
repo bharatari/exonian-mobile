@@ -85,16 +85,11 @@
     margin-top: 5px;
 }
 
-.platform-android .brand-logo {
-    margin-top: 12px;
-    font-weight: 600;
-}
-
-.platform-android .exonian-mobile {
+.platform-android .exonian-mobile, .platform-win32 .exonian-mobile, .platform-windowsphone .exonian-mobile {
     letter-spacing: -1px;
 }
 
-.platform-android .about-text {
+.platform-android .about-text, .platform-win32 .about-text, .platform-windowsphone .about-text {
     letter-spacing: -1px;
 }
 
@@ -111,12 +106,15 @@
 
 .brand-logo {
     color: white;
-    margin-top: 9px;
+    margin-top: 10px;
     margin-right: 15px;
-    font-size: 14px;
+    text-transform: uppercase;
+    font-size: 15px;
     font-weight: 500;
     margin-left: 22px;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-family: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
 }
 
 .overlay {
@@ -136,7 +134,7 @@
     z-index: 150;
 }
 
-.platform-android .headline-text {
+.platform-android .headline-text, .platform-win32 .headline-text, .platform-windowsphone .headline-text {
     letter-spacing: -1px;
 }
 
@@ -153,7 +151,7 @@
     margin-top: 20px;
 }
 
-.platform-android .nav-bar-title {
+.platform-android .nav-bar-title, .platform-win32 .nav-bar-title, .platform-windowsphone .nav-bar-title {
     font-family: 'Open Sans', 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
     font-weight: 600;
     letter-spacing: -1px;
@@ -164,7 +162,11 @@
     margin-left: -50px;
 }
 
-.platform-android .article-title {
+.platform-win32 .nav-title-text, .platform-windowsphone .nav-title-text {
+    text-align: center;
+}
+
+.platform-android .article-title, .platform-win32 .article-title, .platform-windowsphone .article-title {
     letter-spacing: -1px;
 }
 
@@ -232,7 +234,7 @@
     background-size: cover !important;
 }
 
-.platform-android .article-header {
+.platform-android .article-header, .platform-win32 .article-header, .platform-windowsphone .article-header {
     letter-spacing: -1px;
 } 
 
@@ -241,7 +243,7 @@
     font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
-.platform-android .article-content {
+.platform-android .article-header, .platform-win32 .article-header, .platform-windowsphone .article-content {
     font-weight: 300;
 }
 
@@ -315,7 +317,7 @@
     font-weight: 600;
 }
 
-.platform-android .item-content {
+.platform-android .item-content, .platform-win32 .item-content, .platform-windowsphone .item-content {
     font-family: 'Open Sans';
     letter-spacing: 0px;
 }
@@ -332,7 +334,7 @@
 }
 
 /* iPhone 5 and iPhone 4 screen sizes */
-@media only screen and (max-device-height : 570px) {
+@media only screen and (max-height : 570px) {
     .nav-bar-large {
         /* Height Variable */
         height: 200px !important;
@@ -351,7 +353,7 @@
 }
 
 /** iPhone 4 landscape screen sizes **/
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) { 
+@media only screen and (min-width : 320px) and (max-width : 480px) and (orientation : landscape) { 
     .nav-bar-large {
         /* Height Variable */
         height: 180px !important;
@@ -374,7 +376,7 @@
 }
 
 /** iPhone 5 landscape screen sizes **/
-@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) { 
+@media only screen and (min-width : 320px) and (max-width: 1024px) and (orientation : landscape) { 
     .nav-bar-large {
         /* Height Variable */
         height: 160px !important;
@@ -397,13 +399,13 @@
 }
 
 /** iPad screen sizes **/
-@media only screen and (min-device-width : 768px)  { 
-    .item {
+@media only screen and (min-width : 768px)  { 
+    .post-item {
         float: left;
         width: 33.3333%;
         height: 210px;
     }
-    .item-content {
+    .post-item .item-content {
         text-align: center;
         height: 100%;
         width: 100%;
@@ -415,7 +417,83 @@
     .article-title-large {
         display: inline !important;
     }
-    .article-title {
+    .post-item .article-title {
+        height: 105px;
+        text-align: center;
+        display: block;
+    }
+}
+
+/** Large screen sizes **/
+@media only screen and (min-width : 1200px)  { 
+    .post-item {
+        float: left;
+        width: 25%;
+        height: 210px;
+    }
+    .post-item .item-content {
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        padding-left: 37px !important;
+    }
+    .article-title-small {
+        display: none !important;
+    }
+    .article-title-large {
+        display: inline !important;
+    }
+    .post-item .article-title {
+        height: 105px;
+        text-align: center;
+        display: block;
+    }
+}
+
+@media only screen and (min-width : 2000px)  { 
+    .post-item {
+        float: left;
+        width: 20%;
+        height: 210px;
+    }
+    .post-item .item-content {
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        padding-left: 37px !important;
+    }
+    .article-title-small {
+        display: none !important;
+    }
+    .article-title-large {
+        display: inline !important;
+    }
+    .post-item .article-title {
+        height: 105px;
+        text-align: center;
+        display: block;
+    }
+}
+
+@media only screen and (min-width : 2200px)  { 
+    .post-item {
+        float: left;
+        width: 16.6666%;
+        height: 210px;
+    }
+    .post-item .item-content {
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        padding-left: 37px !important;
+    }
+    .article-title-small {
+        display: none !important;
+    }
+    .article-title-large {
+        display: inline !important;
+    }
+    .post-item .article-title {
         height: 105px;
         text-align: center;
         display: block;

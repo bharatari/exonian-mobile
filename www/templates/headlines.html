@@ -5,7 +5,7 @@
           </button>
       </ion-nav-buttons>      
       <div class="right-logo">
-          <p class="brand-logo">THE EXONIAN</p>
+          <p class="brand-logo">The Exonian</p>
       </div>
       <div class="overlay"></div>
       <div class="headline">
@@ -21,7 +21,7 @@
           </ion-refresher>
           <ion-list class="posts">
               <div>
-                  <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}">
+                  <ion-item ng-repeat="Post in Posts" class="post-item" href="#/app/article/{{Post.id}}">
                       <p class="article-title article-title-small" ng-bind-html="Post.title"></p>
                       <p class="article-title article-title-large" ng-bind-html="Post.titleClip"></p>
                       <p class="article-headline-author">{{Post.Author}}</p>
