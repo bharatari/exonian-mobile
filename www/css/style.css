@@ -86,8 +86,16 @@
 }
 
 .platform-android .brand-logo {
-    margin-top: 10px;
+    margin-top: 12px;
     font-weight: 600;
+}
+
+.platform-android .exonian-mobile {
+    letter-spacing: -1px;
+}
+
+.platform-android .about-text {
+    letter-spacing: -1px;
 }
 
 .right-logo {
@@ -147,7 +155,7 @@
 
 .platform-android .nav-bar-title {
     font-family: 'Open Sans', 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -1px;
 }
 
@@ -166,6 +174,14 @@
     font-weight: 300;
     font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     white-space: normal !important;
+}
+
+.article-title-small {
+    display: inline !important;
+}
+
+.article-title-large {
+    display: none !important;
 }
 
 .article-subtitle {
@@ -205,7 +221,7 @@
     margin-top: 15px;
 }
 
-.post-list {
+.headline-height {
     position: relative;
     /* Height Variable */
     margin-top: 255px;
@@ -260,10 +276,6 @@
     display: none;
 }
 
-.post-list-category {
-    margin-top: 0px;
-}
-
 .no-results {
     margin-left: 15px;
     margin-top: 15px;
@@ -308,16 +320,11 @@
     letter-spacing: 0px;
 }
 
-.error-box {
-    position: relative;
-    /* Height Variable */
-    margin-top: 280px;
-}
-
 .error-message {
     margin-left: 15px;
     line-height: normal;
-    margin-top: 15px;
+    display: block;
+    padding-top: 20px;
     font-size: 32px;
     font-weight: 300;
     color: darkgray;
@@ -337,13 +344,80 @@
         height: 150px;
     }
     
-    .post-list {
+    .headline-height {
         /* Height Variable */
         margin-top: 155px;
     }
-    
-    .error-box {
+}
+
+/** iPhone 4 landscape screen sizes **/
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) { 
+    .nav-bar-large {
         /* Height Variable */
-        margin-top: 180px;
+        height: 180px !important;
+    }
+
+    .overlay {
+        /* Height Variable */
+        opacity: 0.7;
+        height: 130px;
+    }
+
+    .headline-height {
+        /* Height Variable */
+        margin-top: 125px;
+    }
+    
+    .headline-text {
+        bottom: 10px;
+    }
+}
+
+/** iPhone 5 landscape screen sizes **/
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) { 
+    .nav-bar-large {
+        /* Height Variable */
+        height: 160px !important;
+    }
+
+    .overlay {
+        /* Height Variable */
+        opacity: 0.7;
+        height: 110px;
+    }
+
+    .headline-height {
+        /* Height Variable */
+        margin-top: 115px;
+    }
+    
+    .headline-text {
+        bottom: 10px;
+    }
+}
+
+/** iPad screen sizes **/
+@media only screen and (min-device-width : 768px)  { 
+    .item {
+        float: left;
+        width: 33.3333%;
+        height: 210px;
+    }
+    .item-content {
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        padding-left: 37px !important;
+    }
+    .article-title-small {
+        display: none !important;
+    }
+    .article-title-large {
+        display: inline !important;
+    }
+    .article-title {
+        height: 105px;
+        text-align: center;
+        display: block;
     }
 }

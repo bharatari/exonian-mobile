@@ -1,5 +1,8 @@
 {
     "jscodehints.detectedExclusions": [
-        "C:/Users/Bharat/OneDrive/Personal/Web/Exonian/ExonianMobile/www/js/app.js"
+        "C:/Users/Bharat/OneDrive/Personal/Web/Exonian/ExonianMobile/www/js/app.js",
+        "C:/Users/Bharat/OneDrive/Personal/Web/Exonian/ExonianMobile/plugins/org.apache.cordova.console/www/logger.js",
+        "C:/Users/Bharat/OneDrive/Personal/Web/Exonian/ExonianMobile/www/js/controllers.js",
+        "C:/Users/Bharat/OneDrive/Personal/Web/Exonian/ExonianMobile/www/lib/ionic/js/ionic-angular.min.js"
     ]
 }

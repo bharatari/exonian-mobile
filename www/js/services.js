@@ -59,6 +59,13 @@ angular.module('ExonianMobile.services', [])
         },
         processAuthors: function(posts) {
             for(var i = 0; i < posts.length; i++) {
+                if(posts[i].title.length > 45) {
+                    posts[i].titleClip = posts[i].title.substring(0, 45);
+                    posts[i].titleClip += "...";
+                }
+                else {
+                    posts[i].titleClip = posts[i].title;
+                }
                 if(posts[i].custom_fields.authors[0]) {
                     if(posts[i].custom_fields.authors[0] === "") {
                         posts[i].Author = posts[i].author.name;

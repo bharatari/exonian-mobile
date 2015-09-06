@@ -12,17 +12,18 @@
           <p class="headline-text" ng-click="goToHeadline(Featured)" ng-bind-html="FeaturedTitle"></p>
       </div>
   </ion-nav-bar>
-  <ion-content>
-      <div ng-if="!error" class="post-list">
+  <ion-content has-bouncing="true">
+      <div ng-if="!error" class="headline-height">
           <ion-refresher 
                          spinner="android"
-                         pulling-icon="'ion-android-arrow-down"
+                         pulling-icon="ion-android-arrow-down"
                          on-refresh="refresh()">
           </ion-refresher>
-          <ion-list>
+          <ion-list class="posts">
               <div>
                   <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}">
-                      <p class="article-title" ng-bind-html="Post.title"></p>
+                      <p class="article-title article-title-small" ng-bind-html="Post.title"></p>
+                      <p class="article-title article-title-large" ng-bind-html="Post.titleClip"></p>
                       <p class="article-headline-author">{{Post.Author}}</p>
                       <div class="article-subtitle-background">
                           <span class="article-subtitle">{{Post.categories[0].title}}</span>
@@ -36,7 +37,7 @@
                 on-infinite="loadMore()">
           </ion-infinite-scroll>
       </div>
-      <div ng-if="error" class="error-box">
+      <div ng-if="error" class="headline-height">
           <p class="error-message">Check your internet connection and try again.</p>
       </div>
   </ion-content>
