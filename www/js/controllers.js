@@ -14,6 +14,8 @@ angular.module('ExonianMobile.controllers', ['ionic'])
         $scope.Posts = UtilityFactory.processAuthors(response.posts);
         $scope.MaxPage = response.pages;
         $ionicLoading.hide();
+    }).error(function(err) {
+    
     });
     PostsFactory.getFeaturedPost().success(function(response) {
         $scope.Featured = response.posts[0];

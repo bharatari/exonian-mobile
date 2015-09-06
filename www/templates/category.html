@@ -5,7 +5,7 @@
             </button>
         </ion-nav-buttons>
         <ion-nav-title>
-            <p>{{Title}}</p>
+            <p class="nav-title-text">{{Title}}</p>
         </ion-nav-title>
     </ion-nav-bar>
     <ion-content>
@@ -19,7 +19,7 @@
         </ion-list>
         <ion-infinite-scroll
             ng-if="checkData()"
-            icon="ion-loading-c"
+            spinner="android"                 
             on-infinite="loadMore()">
         </ion-infinite-scroll>
     </ion-content>

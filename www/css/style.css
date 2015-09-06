@@ -1,3 +1,73 @@
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-Semibold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-SemiboldItalic.ttf") format("truetype");
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-ExtraBoldItalic.ttf") format("truetype");
+    font-weight: 800;
+    font-style: italic;
+}
+
 .nav-bar-large {
     /* Height Variable */
     height: 300px !important;
@@ -13,6 +83,10 @@
 
 .nav-button-top {
     margin-top: 5px;
+}
+
+.platform-android .brand-logo {
+    margin-top: 10px;
 }
 
 .right-logo {
@@ -33,6 +107,7 @@
     font-size: 14px;
     font-weight: 500;
     margin-left: 22px;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
 .overlay {
@@ -52,10 +127,15 @@
     z-index: 150;
 }
 
+.platform-android .headline-text {
+    letter-spacing: -1px;
+}
+
 .headline-text {
     position: absolute;
     bottom: 30px;
     font-size: 32px;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     color: white;
     font-weight: 300;
     margin-left: 16px;
@@ -64,10 +144,26 @@
     margin-top: 20px;
 }
 
+.platform-android .nav-bar-title {
+    font-family: 'Open Sans', 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.platform-android .nav-title-text {
+    text-align: center;
+    margin-left: -50px;
+}
+
+.platform-android .article-title {
+    letter-spacing: -1px;
+}
+
 .article-title {
     font-size: 24px !important;
     line-height: normal;
     font-weight: 300;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     white-space: normal !important;
 }
 
@@ -80,6 +176,7 @@
     padding-bottom: 5px;
     padding-top: 5px;
     font-size: 13px;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     background-color: #ff4141;
 }
 
@@ -88,6 +185,7 @@
     font-weight: 400;
     color: darkgray;
     margin-top: 7px;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     display: block;
     margin-bottom: 10px;
 }
@@ -96,6 +194,7 @@
     text-transform: uppercase;
     font-weight: 400;
     color: darkgray;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     margin-top: 10px;
     display: block;
     margin-bottom: 10px;
@@ -116,14 +215,24 @@
     background-size: cover !important;
 }
 
+.platform-android .article-header {
+    letter-spacing: -1px;
+} 
+
 .article-header {
-    font-weight: 500;    
+    font-weight: 300;  
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+}
+
+.platform-android .article-content {
+    font-weight: 300;
 }
 
 .article-content {
     font-size: 20px;
     line-height: normal;
     margin-top: 20px;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
 .content-area {
@@ -137,10 +246,12 @@
     text-transform: uppercase;
     color: darkgray;
     margin-left: 2px;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
 .article-date {
     color: darkgray;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     margin-left: 2px
 }
 
@@ -158,6 +269,7 @@
     font-size: 32px;
     font-weight: 300;
     color: darkgray;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
 .article-image {
@@ -178,6 +290,7 @@
 .about-box h1, h4 {
     text-align: center;
     font-weight: 300;
+    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
 .bold-inline {
@@ -187,6 +300,11 @@
 .pullquote {
     font-size: 24px;
     font-weight: 600;
+}
+
+.platform-android .item-content {
+    font-family: 'Open Sans';
+    letter-spacing: 0px;
 }
 
 /* iPhone 5 and iPhone 4 screen sizes */
