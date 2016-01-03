@@ -9,12 +9,13 @@
         </ion-nav-title>
     </ion-nav-bar>
     <ion-content has-bouncing="true">
-        <div ng-if="!error">
-            <ion-refresher 
+        <ion-refresher 
                 spinner="android"
                 pulling-icon="ion-android-arrow-down"
                 on-refresh="refresh()">
             </ion-refresher>
+        <div ng-if="!error">
+            
             <ion-list>
                 <div>
                     <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}">

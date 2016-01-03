@@ -6,11 +6,11 @@
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content has-bouncing="true">
-        <div class="item item-input-inset">
-            <label class="item-input-wrapper">
-                <input type="text" placeholder="Search" ng-model="searchTerm">
+        <div class="item item-input-inset search-box-wrapper">
+            <label class="item-input-wrapper search-box">
+                <input type="text" class="input-full-width" placeholder="Search" ng-model="searchTerm" ng-keypress="keypress($event, searchTerm)">
             </label>
-            <button class="button button-small" ng-click="search(searchTerm)">
+            <button class="button button-small button-search" ng-click="search(searchTerm)">
                 <i class="ion-search"></i>
             </button>
         </div>

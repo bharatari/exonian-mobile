@@ -68,17 +68,59 @@
     font-style: italic;
 }
 
+.headline {
+    position: relative;
+    width: 100%;
+    z-index: 150;
+}
+
+.platform-android .headline-text, .platform-win32 .headline-text, .platform-windowsphone .headline-text {
+    letter-spacing: -1px;
+}
+
+.headline-text {
+    position: absolute;
+    bottom: 20px;
+    font-size: 28px;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    color: white;
+    font-weight: 700;
+    margin-left: 23px;
+    line-height: normal;
+    margin-right: 17px;
+    margin-top: 20px;
+    letter-spacing: -2px;
+}
+
+
 .nav-bar-large {
     /* Height Variable */
-    height: 300px !important;
-    background-color: #ff3b3b !important;
-    background-image: linear-gradient(transparent, black);
+    height: 200px !important;
+    background-color: #ef473a !important;
+}
+
+.navbar-transparent {
+    display: none;
+}
+
+.headline-box {
+    margin-top: -200px;
 }
 
 .nav-button {
     color: white !important;
     position: relative;
     display: block;
+}
+
+.nav-headline {
+    margin-left: 15px;
+}
+
+.nav-headline::before {
+    font-size: 26px;
+    z-index: 999;
+    position: relative;
 }
 
 .nav-button-top {
@@ -93,39 +135,15 @@
     letter-spacing: -1px;
 }
 
-.right-logo {
-    float: right;
-    z-index: 100;
-    position: relative;
-    background-color: #FF4141;
-    margin-top: 7px;
-    height: 40px;
-    width: 135px;
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.16), 0px 2px 10px 0px rgba(0,0,0,0.12);
-}
-
-.brand-logo {
-    color: white;
-    margin-top: 10px;
-    margin-right: 15px;
-    text-transform: uppercase;
-    font-size: 15px;
-    font-weight: 500;
-    margin-left: 22px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    font-family: "Open Sans", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
-}
-
 .overlay {
-    background-image: linear-gradient(transparent, black);
-    opacity: 0.3;
+    opacity: 0.5;
     /* Height Variable */
-    height: 250px;
-    margin-top: 50px;
+    height: 201px;
+    margin-top: -1px;
     position: relative;
     width: 100%;
     z-index: 50;
+    background-color: black;
 }
 
 .headline {
@@ -140,15 +158,16 @@
 
 .headline-text {
     position: absolute;
-    bottom: 30px;
-    font-size: 32px;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    bottom: 20px;
+    font-size: 28px;
+    font-family: "Open Sans", "Roboto", "Segoe UI", sans-serif;
     color: white;
-    font-weight: 300;
-    margin-left: 16px;
+    font-weight: 600;
+    margin-left: 23px;
     line-height: normal;
     margin-right: 17px;
     margin-top: 20px;
+    letter-spacing: -2px;
 }
 
 .platform-android .nav-bar-title, .platform-win32 .nav-bar-title, .platform-windowsphone .nav-bar-title {
@@ -174,7 +193,7 @@
     font-size: 24px !important;
     line-height: normal;
     font-weight: 300;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     white-space: normal !important;
 }
 
@@ -195,7 +214,7 @@
     padding-bottom: 5px;
     padding-top: 5px;
     font-size: 13px;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     background-color: #ff4141;
 }
 
@@ -204,7 +223,7 @@
     font-weight: 400;
     color: darkgray;
     margin-top: 7px;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     display: block;
     margin-bottom: 10px;
 }
@@ -213,7 +232,7 @@
     text-transform: uppercase;
     font-weight: 400;
     color: darkgray;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     margin-top: 10px;
     display: block;
     margin-bottom: 10px;
@@ -225,8 +244,6 @@
 
 .headline-height {
     position: relative;
-    /* Height Variable */
-    margin-top: 255px;
 }
 
 .image-background {
@@ -240,7 +257,7 @@
 
 .article-header {
     font-weight: 300;  
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
 .platform-android .article-header, .platform-win32 .article-header, .platform-windowsphone .article-content {
@@ -251,7 +268,7 @@
     font-size: 20px;
     line-height: normal;
     margin-top: 20px;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
 .content-area {
@@ -265,12 +282,12 @@
     text-transform: uppercase;
     color: darkgray;
     margin-left: 2px;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
 .article-date {
     color: darkgray;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
     margin-left: 2px
 }
 
@@ -284,7 +301,7 @@
     font-size: 32px;
     font-weight: 300;
     color: darkgray;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
 .article-image {
@@ -305,7 +322,7 @@
 .about-box h1, h4 {
     text-align: center;
     font-weight: 300;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
 .bold-inline {
@@ -330,72 +347,51 @@
     font-size: 32px;
     font-weight: 300;
     color: darkgray;
-    font-family: "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
 }
 
-/* iPhone 5 and iPhone 4 screen sizes */
-@media only screen and (max-height : 570px) {
-    .nav-bar-large {
-        /* Height Variable */
-        height: 200px !important;
-    }
-
-    .overlay {
-        /* Height Variable */
-        opacity: 0.7;
-        height: 150px;
-    }
-    
-    .headline-height {
-        /* Height Variable */
-        margin-top: 155px;
-    }
+.posts {
+    display: block;
 }
 
-/** iPhone 4 landscape screen sizes **/
-@media only screen and (min-width : 320px) and (max-width : 480px) and (orientation : landscape) { 
-    .nav-bar-large {
-        /* Height Variable */
-        height: 180px !important;
-    }
-
-    .overlay {
-        /* Height Variable */
-        opacity: 0.7;
-        height: 130px;
-    }
-
-    .headline-height {
-        /* Height Variable */
-        margin-top: 125px;
-    }
-    
-    .headline-text {
-        bottom: 10px;
-    }
+.input-full-width {
+    width: 100%;
+    color: black !important;
+    font-family: 'Open Sans';
 }
 
-/** iPhone 5 landscape screen sizes **/
-@media only screen and (min-width : 320px) and (max-width: 1024px) and (orientation : landscape) { 
-    .nav-bar-large {
-        /* Height Variable */
-        height: 160px !important;
-    }
+.button-search {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: white;
+}
 
-    .overlay {
-        /* Height Variable */
-        opacity: 0.7;
-        height: 110px;
-    }
+.button-search:hover {
+    color: white;
+}
 
-    .headline-height {
-        /* Height Variable */
-        margin-top: 115px;
-    }
-    
-    .headline-text {
-        bottom: 10px;
-    }
+.button-search:focus {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: white;
+    box-shadow: none;
+}
+
+.search-box-wrapper {
+    background-color: #e6e6e6;
+    border: none;
+    margin-top: -1px;
+}
+
+.search-box {
+    background-color: #e6e6e6;
+}
+
+.featured-image {
+    height: auto;
+    width: 100%;
 }
 
 /** iPad screen sizes **/

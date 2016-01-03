@@ -26,9 +26,11 @@ angular.module('ExonianMobile.controllers', ['ionic'])
             $scope.FeaturedTitle = $scope.FeaturedTitle.substring(0, 40);
             $scope.FeaturedTitle += "...";
         }
-        if($scope.Featured.attachments[0].url) {
-            $('.nav-bar-large').css('background-image', 'url(' +       $scope.Featured.attachments[0].url + ')');            
-        }
+        var img = new Image();
+        img.addEventListener("load", function() {
+          $('.featured-image').attr("src", $scope.Featured.attachments[0].url);
+        }, false);
+        img.src = $scope.Featured.attachments[0].url;
     });
     $scope.goToHeadline = function(headline) {
         $state.go('app.article', { articleId:headline.id });
@@ -72,14 +74,22 @@ angular.module('ExonianMobile.controllers', ['ionic'])
                 $scope.FeaturedTitle = $scope.FeaturedTitle.substring(0, 40);
                 $scope.FeaturedTitle += "...";
             }
-            if($scope.Featured.attachments[0].url) {
-                $('.nav-bar-large').css('background-image', 'url(' +       $scope.Featured.attachments[0].url + ')');            
-            }
+            var img = new Image();
+            img.addEventListener("load", function() {
+              $('.featured-image').attr("src", $scope.Featured.attachments[0].url);
+            }, false);
+            img.src = $scope.Featured.attachments[0].url;
         });
     }
 })
 
 .controller('SearchController', function($scope, $ionicLoading, SearchFactory) {
+    $scope.keypress = function($event, searchTerm) {
+        if($event.keyIdentifier === 'Enter' || 'Return') {
+            console.log(searchTerm);
+            $scope.search(searchTerm);
+        }
+    }
     $scope.search = function(searchTerm) {
         $ionicLoading.show({
             template: "Loading"
@@ -170,28 +180,32 @@ angular.module('ExonianMobile.controllers', ['ionic'])
     });
     PostsFactory.getPost($stateParams.articleId).success(function(response){
         $scope.Post = response.post;
-        if($scope.Post.custom_fields.authors[0]) {
-            if($scope.Post.custom_fields.authors[0] === "") {
-                $scope.Author = $scope.Post.author.name;
+        if($scope.Post) {
+            if($scope.Post.custom_fields.authors[0]) {
+                if($scope.Post.custom_fields.authors[0] === "") {
+                    $scope.Author = $scope.Post.author.name;
+                }
+                else {
+                    $scope.Author = $scope.Post.custom_fields.authors[0];
+                }
             }
             else {
-                $scope.Author = $scope.Post.custom_fields.authors[0];
+                $scope.Author = $scope.Post.author.name;
+            }
+            if($scope.Post.attachments.length > 0) {
+                $scope.Image = $scope.Post.attachments[0].url;
+                $scope.ImageString = "background-image: url(" + $scope.Image + "); ";
+                var img = new Image();
+                img.addEventListener("load", function() {
+                    if(img.width > img.height) {
+                        $('.article-image').addClass('article-image-wide');
+                    }
+                }, false);
+                img.src = $scope.Image;
             }
         }
-        else {
-            $scope.Author = $scope.Post.author.name;
-        }
-        if($scope.Post.attachments.length > 0) {
-            $scope.Image = $scope.Post.attachments[0].url;
-            $scope.ImageString = "background-image: url(" + $scope.Image + "); ";
-            var img = new Image();
-            img.addEventListener("load", function() {
-                if(img.width > img.height) {
-                    $('.article-image').addClass('article-image-wide');
-                }
-            }, false);
-            img.src = $scope.Image;
-        }
+        
+        
         $ionicLoading.hide();
     });
 });

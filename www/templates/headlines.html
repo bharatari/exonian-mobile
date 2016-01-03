@@ -1,24 +1,29 @@
 <ion-view>
-  <ion-nav-bar class="bar-stable nav-bar-large image-background">
-      <ion-nav-buttons side="left">
-          <button class="button button-icon button-clear ion-navicon nav-button nav-button-top" menu-toggle="left">
-          </button>
-      </ion-nav-buttons>      
-      <div class="right-logo">
-          <p class="brand-logo">The Exonian</p>
-      </div>
-      <div class="overlay"></div>
-      <div class="headline">
-          <p class="headline-text" ng-click="goToHeadline(Featured)" ng-bind-html="FeaturedTitle"></p>
-      </div>
-  </ion-nav-bar>
-  <ion-content has-bouncing="true">
-      <div ng-if="!error" class="headline-height">
-          <ion-refresher 
+  <ion-nav-bar class="bar-assertive nav-title-slide-ios7">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon nav-button" menu-toggle="left">
+            </button>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            <p class="nav-title-text">The Exonian</p>
+        </ion-nav-title>
+    </ion-nav-bar>
+  <ion-content>
+      <ion-refresher 
                          spinner="android"
                          pulling-icon="ion-android-arrow-down"
                          on-refresh="refresh()">
-          </ion-refresher>
+        </ion-refresher>
+      <div class="nav-bar-large image-background">
+        <img class="featured-image" />
+      </div>
+      <div class="headline-box">
+        <div class="overlay"></div>
+        <div class="headline">
+          <p class="headline-text" ng-click="goToHeadline(Featured)" ng-bind-html="FeaturedTitle"></p>
+        </div>
+      </div>
+      <div ng-if="!error">
           <ion-list class="posts">
               <div>
                   <ion-item ng-repeat="Post in Posts" class="post-item" href="#/app/article/{{Post.id}}">
