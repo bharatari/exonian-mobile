@@ -68,7 +68,7 @@ angular.module('ExonianMobile.services', [])
                   }
                 }
                 if (posts[i].custom_fields) {
-                  if (posts.custom_fields.authors) {
+                  if (posts[i].custom_fields.authors) {
                     if (posts[i].custom_fields.authors[0]) {
                       if (posts[i].custom_fields.authors[0] === "") {
                           posts[i].Author = posts[i].author.name;
