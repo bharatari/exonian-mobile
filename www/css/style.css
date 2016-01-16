@@ -74,25 +74,6 @@
     z-index: 150;
 }
 
-.platform-android .headline-text, .platform-win32 .headline-text, .platform-windowsphone .headline-text {
-    letter-spacing: -1px;
-}
-
-.headline-text {
-    position: absolute;
-    bottom: 20px;
-    font-size: 28px;
-    font-family: -apple-system, "Helvetica Neue", "Open Sans", "Roboto", "Segoe UI", sans-serif;
-    color: white;
-    font-weight: 700;
-    margin-left: 23px;
-    line-height: normal;
-    margin-right: 17px;
-    margin-top: 20px;
-    letter-spacing: -2px;
-}
-
-
 .nav-bar-large {
     /* Height Variable */
     height: 200px !important;
@@ -152,33 +133,33 @@
     z-index: 150;
 }
 
+
 .platform-android .headline-text, .platform-win32 .headline-text, .platform-windowsphone .headline-text {
-    letter-spacing: -1px;
+    /*letter-spacing: -2px;*/
 }
 
 .headline-text {
     position: absolute;
     bottom: 20px;
     font-size: 28px;
-    font-family: "Open Sans", "Roboto", "Segoe UI", sans-serif;
+    font-family: "Roboto", -apple-system, "Helvetica Neue", "Segoe UI", sans-serif;
     color: white;
     font-weight: 600;
     margin-left: 23px;
     line-height: normal;
     margin-right: 17px;
     margin-top: 20px;
-    letter-spacing: -2px;
 }
 
 .platform-android .nav-bar-title, .platform-win32 .nav-bar-title, .platform-windowsphone .nav-bar-title {
-    font-family: 'Open Sans', 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-weight: 600;
-    letter-spacing: -1px;
+    
 }
 
 .platform-android .nav-title-text {
     text-align: center;
     margin-left: -50px;
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-weight: 600;
 }
 
 .platform-win32 .nav-title-text, .platform-windowsphone .nav-title-text {
@@ -275,6 +256,7 @@
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 30px;
+    padding-bottom: 30px;
 }
 
 .article-author {
