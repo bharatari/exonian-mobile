@@ -48,42 +48,48 @@ angular.module('ExonianMobile.services', [])
     return {
         stringifyArray: function(array) {
             var string = "";
-            for(var i = 0; i < array.length; i++) {
-                if(i === 0) {
+            for (var i = 0; i < array.length; i++) {
+                if (i === 0) {
                     string += array[i];
-                }
-                else {
+                } else {
                     string += ", " + array[i];
                 }
             }
         },
         processAuthors: function(posts) {
-            for(var i = 0; i < posts.length; i++) {
-                if(posts[i].title.length > 45) {
+            if (posts) {
+              for (var i = 0; i < posts.length; i++) {
+                if (posts[i]) {
+                  if (posts[i].title.length > 45) {
                     posts[i].titleClip = posts[i].title.substring(0, 45);
                     posts[i].titleClip += "...";
+                  } else {
+                      posts[i].titleClip = posts[i].title;
+                  }
                 }
-                else {
-                    posts[i].titleClip = posts[i].title;
-                }
-                if(posts[i].custom_fields.authors[0]) {
-                    if(posts[i].custom_fields.authors[0] === "") {
-                        posts[i].Author = posts[i].author.name;
+                if (posts[i].custom_fields) {
+                  if (posts.custom_fields.authors) {
+                    if (posts[i].custom_fields.authors[0]) {
+                      if (posts[i].custom_fields.authors[0] === "") {
+                          posts[i].Author = posts[i].author.name;
+                      }
+                      else {
+                          posts[i].Author = posts[i].custom_fields.authors[0];
+                      }
                     }
                     else {
-                        posts[i].Author = posts[i].custom_fields.authors[0];
+                        posts[i].Author = posts[i].author.name;
                     }
-                }
-                else {
-                    posts[i].Author = posts[i].author.name;
-                }
-            }
+                  }
+                }                
+              }
+            }            
             return posts;
         },
         findCategory: function(categoryName) {
             var menu = MenuFactory;
-            for(var i = 0; i < menu.length; i++) {
-                if(categoryName === menu[i].id) {
+            for (var i = 0; i < menu.length; i++) {
+                if (categoryName === menu[i].id) {
                     return menu[i].name;
                 }
             }
