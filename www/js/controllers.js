@@ -2,36 +2,45 @@ angular.module('ExonianMobile.controllers', ['ionic'])
 
 .controller('AppController', function($scope, MenuFactory) {
     $scope.MenuFactory = MenuFactory;
-    ionic.Platform.fullScreen();
 })
 
 .controller('HeadlinesController', function($scope, PostsFactory, $ionicLoading, $state, UtilityFactory, $ionicPopup, $window) {
-    $scope.error = false;
-    $ionicLoading.show({
-        template: "Loading"
-    });
-    $scope.Page = 1;
-    PostsFactory.getRecentPosts().success(function(response) {
-        $scope.Posts = UtilityFactory.processAuthors(response.posts);
-        $scope.MaxPage = response.pages;
-        $ionicLoading.hide();
-    }).error(function(err) {
-        $ionicLoading.hide();
-        $scope.error = true;
-    });
-    PostsFactory.getFeaturedPost().success(function(response) {
-        $scope.Featured = response.posts[0];
-        $scope.FeaturedTitle = $scope.Featured.title;
-        if($scope.FeaturedTitle.length > 40) {
-            $scope.FeaturedTitle = $scope.FeaturedTitle.substring(0, 40);
-            $scope.FeaturedTitle += "...";
-        }
-        var img = new Image();
-        img.addEventListener("load", function() {
-          $('.featured-image').attr("src", $scope.Featured.attachments[0].url);
-        }, false);
-        img.src = $scope.Featured.attachments[0].url;
-    });
+    $scope.reset = function() {
+        $scope.Page = 1;
+        $scope.error = false;
+    }
+    $scope.setup = function() {
+        $scope.reset();
+        $scope.loadHeadline();
+        $scope.loadRecentPosts();
+    }
+    $scope.loadHeadline = function() {
+        PostsFactory.getFeaturedPost().success(function(response) {
+            $scope.Featured = UtilityFactory.processFeatured(response);
+            $scope.FeaturedImage = UtilityFactory.getFeaturedImage($scope.Featured);
+            try {
+                var img = new Image();
+                img.addEventListener("load", function() {
+                  $('.nav-bar-large').attr("style", "background-image:url(" + $scope.FeaturedImage + ");");
+                  //$('.featured-image').attr("src", $scope.FeaturedImage);
+                }, false);
+                img.src = $scope.FeaturedImage;
+            } catch (err) {
+            
+            }
+            
+        }).error(function(err) {
+            $scope.error = true;
+        });
+    }
+    $scope.loadRecentPosts = function() {
+        PostsFactory.getRecentPosts().success(function(response) {
+            $scope.Posts = UtilityFactory.processAuthors(response.posts);
+            $scope.MaxPage = response.pages;
+        }).error(function(err) {
+            $scope.error = true;
+        });
+    }
     $scope.goToHeadline = function(headline) {
         $state.go('app.article', { articleId:headline.id });
     }
@@ -44,43 +53,28 @@ angular.module('ExonianMobile.controllers', ['ionic'])
             return true;
         }
     }
+    $scope.addToPosts = function(posts) {
+        for(var i = 0; i < posts.length; i++) {
+            if($scope.Posts) {
+                $scope.Posts.push(posts[i]);
+            }
+        }
+    }
     $scope.loadMore = function() {
         $scope.Page += 1;
         PostsFactory.getRecentPage($scope.Page).success(function(response) {
             var posts = UtilityFactory.processAuthors(response.posts);
-            for(var i = 0; i < posts.length; i++) {
-                if($scope.Posts) {
-                    $scope.Posts.push(posts[i]);
-                }
-            }
+            $scope.addToPosts(posts);
             $scope.$broadcast('scroll.infiniteScrollComplete');
         });
     }
     $scope.refresh = function() {
-        $scope.error = false;
-        $scope.Page = 1;
-        PostsFactory.getRecentPosts().success(function(response) {
-            $scope.$broadcast('scroll.refreshComplete');
-            $scope.Posts = UtilityFactory.processAuthors(response.posts);
-            $scope.MaxPage = response.pages;
-        }).error(function(err) {
-            $scope.$broadcast('scroll.refreshComplete');
-            $scope.error = true;
-        });
-        PostsFactory.getFeaturedPost().success(function(response) {
-            $scope.Featured = response.posts[0];
-            $scope.FeaturedTitle = $scope.Featured.title;
-            if($scope.FeaturedTitle.length > 40) {
-                $scope.FeaturedTitle = $scope.FeaturedTitle.substring(0, 40);
-                $scope.FeaturedTitle += "...";
-            }
-            var img = new Image();
-            img.addEventListener("load", function() {
-              $('.featured-image').attr("src", $scope.Featured.attachments[0].url);
-            }, false);
-            img.src = $scope.Featured.attachments[0].url;
-        });
+        $scope.reset();
+        $scope.loadRecentPosts();
+        $scope.loadHeadline();
+        $scope.$broadcast('scroll.refreshComplete');
     }
+    $scope.setup();
 })
 
 .controller('SearchController', function($scope, $ionicLoading, SearchFactory) {
@@ -125,13 +119,25 @@ angular.module('ExonianMobile.controllers', ['ionic'])
 })
 
 .controller('CategoryController', function($scope, PostsFactory, UtilityFactory, $ionicLoading, $stateParams) {
-    $scope.error = false;
-    $scope.Page = 1;
-    PostsFactory.getCategory($stateParams.categoryName).success(function(response) {
-        $scope.Posts = UtilityFactory.processAuthors(response.posts);
-        $scope.MaxPage = response.pages;
-        $scope.Title = UtilityFactory.findCategory($stateParams.categoryName);
-    });
+    $scope.reset = function() {
+        $scope.error = false;
+        $scope.Page = 1;
+    }
+    $scope.getCategory = function(categoryName, refresh) {
+        PostsFactory.getCategory(categoryName).success(function(response) {
+            $scope.Posts = UtilityFactory.processAuthors(response.posts);
+            $scope.MaxPage = response.pages;
+            $scope.Title = UtilityFactory.findCategory(categoryName);
+            if (refresh) {
+                $scope.$broadcast('scroll.refreshComplete');
+            }
+        }).error(function(err) {
+            if (refresh) {
+                $scope.$broadcast('scroll.refreshComplete');
+            }
+            $scope.error = true;
+        });
+    }
     $scope.checkData = function() {
         var pages = $scope.Page + 1;
         if(pages > $scope.MaxPage) {
@@ -141,65 +147,52 @@ angular.module('ExonianMobile.controllers', ['ionic'])
             return true;
         }
     }
+    $scope.addToPosts = function(posts) {
+        for(var i = 0; i < posts.length; i++) {
+            if($scope.Posts) {
+                $scope.Posts.push(posts[i]);
+            }
+        }
+    }
     $scope.loadMore = function() {
         $scope.Page += 1;
         PostsFactory.getCategoryPage($stateParams.categoryName, $scope.Page).success(function(response) {
             var posts = UtilityFactory.processAuthors(response.posts);
-            for(var i = 0; i < posts.length; i++) {
-                if($scope.Posts) {
-                    $scope.Posts.push(posts[i]);
-                }
-            }
+            $scope.addToPosts(posts);
             $scope.$broadcast('scroll.infiniteScrollComplete');
         });
     }
     $scope.refresh = function() {
         $scope.error = false;
         $scope.Page = 1;
-        PostsFactory.getCategory($stateParams.categoryName).success(function(response) {
-            $scope.Posts = UtilityFactory.processAuthors(response.posts);
-            $scope.MaxPage = response.pages;
-            $scope.Title = UtilityFactory.findCategory($stateParams.categoryName);
-            $scope.$broadcast('scroll.refreshComplete');
-        }).error(function(err) {
-            $scope.$broadcast('scroll.refreshComplete');
-            $scope.error = true;
-        });
+        $scope.getCategory($stateParams.categoryName, true);
     }
+    $scope.reset();
+    $scope.getCategory($stateParams.categoryName);
 })
 
-.controller('ArticleController', function($scope, PostsFactory, $ionicLoading, $stateParams) {
+.controller('ArticleController', function($scope, PostsFactory, $ionicLoading, $stateParams, UtilityFactory) {
     $ionicLoading.show({
         template: "Loading"
     });
-    PostsFactory.getPost($stateParams.articleId).success(function(response){
-        $scope.Post = response.post;
-        if($scope.Post) {
-            if($scope.Post.custom_fields.authors[0]) {
-                if($scope.Post.custom_fields.authors[0] === "") {
-                    $scope.Author = $scope.Post.author.name;
-                }
-                else {
-                    $scope.Author = $scope.Post.custom_fields.authors[0];
-                }
+    $scope.loadImage = function(imageUrl) {
+        var img = new Image();
+        img.addEventListener("load", function() {
+            if(img.width > img.height) {
+                $('.article-image').addClass('article-image-wide');
             }
-            else {
-                $scope.Author = $scope.Post.author.name;
-            }
-            if($scope.Post.attachments.length > 0) {
-                $scope.Image = $scope.Post.attachments[0].url;
-                $scope.ImageString = "background-image: url(" + $scope.Image + "); ";
-                var img = new Image();
-                img.addEventListener("load", function() {
-                    if(img.width > img.height) {
-                        $('.article-image').addClass('article-image-wide');
-                    }
-                }, false);
-                img.src = $scope.Image;
-            }
-        }
-        
-        
-        $ionicLoading.hide();
-    });
+        }, false);
+        img.src = imageUrl;
+    }
+    $scope.loadPost = function(articleId) {
+        PostsFactory.getPost(articleId).success(function(response) {
+          $scope.Post = UtilityFactory.processArticle(response.post);
+          $scope.Image = $scope.Post.ExonianMobile.Image;
+          console.log($scope.Image);
+          $scope.BackgroundImage = $scope.Post.ExonianMobile.BackgroundImage;
+          $scope.loadImage($scope.Image);
+          $ionicLoading.hide();
+      });
+    }
+    $scope.loadPost($stateParams.articleId);
 });

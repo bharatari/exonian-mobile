@@ -10,7 +10,7 @@ angular.module('ExonianMobile.services', [])
     ];
 })
 
-.factory('PostsFactory', function($http) {
+.factory('PostsFactory', function($http, UtilityFactory) {
     return {
         getRecentPosts: function() {
             return $http.get('http://www.theexonian.com/?json=get_recent_posts');
@@ -93,6 +93,75 @@ angular.module('ExonianMobile.services', [])
                     return menu[i].name;
                 }
             }
+        },
+        processFeatured: function(response) {
+            if (response) {
+                if(response.posts) {
+                    if(response.posts[0]) {
+                        return this.processFeaturedTitle(response.posts[0]);
+                    }
+                }
+            }
+            return {};
+        },
+        processFeaturedTitle: function(post) {
+            if (post) {
+                if (post.title) {
+                    if(post.title.length > 40) {
+                        post.title = post.title.substring(0, 40);
+                        post.title += "...";
+                    }
+                }
+            }
+            return post;
+        },
+        getFeaturedImage: function(post) {
+            if (post) {
+                if (post.attachments) {
+                    if (post.attachments[0]) {
+                        return post.attachments[0].url;
+                    }
+                }
+            }
+            return "";
+        },
+        processArticle: function(post) {
+            if (post) {
+                post.ExonianMobile = {
+                    Author: "",
+                    Image: "",
+                    BackgroundImage: ""
+                };
+                if (post.custom_fields) {
+                    if (post.custom_fields.authors) {
+                        if (post.custom_fields.authors[0]) {
+                            if (post.custom_fields.authors[0] === "") {
+                                post.ExonianMobile.Author = post.author.name;
+                            } else {
+                                post.ExonianMobile.Author = post.custom_fields.authors[0];
+                            }
+                        }
+                        else {
+                            post.ExonianMobile.Author = post.author.name;
+                        }
+                    }
+                }
+                if (post.attachments) {
+                    if (post.attachments.length > 0) {
+                        post.ExonianMobile.Image = post.attachments[0].url;
+                        post.ExonianMobile.BackgroundImage = "background-image: url(" + post.ExonianMobile.Image + "); ";
+                    }
+                }
+            } else {
+                post = {
+                    ExonianMobile: {
+                        Author: "",
+                        Image: "",
+                        BackgroundImage: ""
+                    }
+                }
+            }   
+            return post;
         }
     }
 });
