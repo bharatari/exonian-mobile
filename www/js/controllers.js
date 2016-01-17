@@ -84,12 +84,6 @@ angular.module('ExonianMobile.controllers', ['ionic'])
 })
 
 .controller('SearchController', function($scope, $ionicLoading, SearchFactory) {
-    $scope.keypress = function($event, searchTerm) {
-        if($event.keyIdentifier === 'Enter' || 'Return') {
-            console.log(searchTerm);
-            $scope.search(searchTerm);
-        }
-    }
     $scope.search = function(searchTerm) {
         $ionicLoading.show({
             template: "Loading"

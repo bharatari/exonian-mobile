@@ -9,14 +9,14 @@
         </ion-nav-title>
     </ion-nav-bar>
     <ion-content has-bouncing="true">
-        <div class="item item-input-inset search-box-wrapper">
+        <form class="item item-input-inset search-box-wrapper" ng-submit="search(searchTerm)">
             <label class="item-input-wrapper search-box">
-                <input type="text" class="input-full-width" placeholder="Search" ng-model="searchTerm" ng-keypress="keypress($event, searchTerm)">
+                <input type="text" class="input-full-width" placeholder="Search" ng-model="searchTerm">
             </label>
-            <button class="button button-small button-search" ng-click="search(searchTerm)">
+            <button class="button button-small button-search" type="submit">
                 <i class="ion-search"></i>
             </button>
-        </div>
+        </form>
         <ion-list>
             <div class="post-list-category">
                 <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}" ng-if="Posts.length > 1">
@@ -29,9 +29,9 @@
             </div>
         </ion-list>
         <ion-infinite-scroll
-                           ng-if="checkData()"
-                           icon="ion-loading-c"
-                           on-infinite="loadMore()">
+          ng-if="checkData()"
+          icon="ion-loading-c"
+          on-infinite="loadMore()">
       </ion-infinite-scroll>
     </ion-content>
 </ion-view>
