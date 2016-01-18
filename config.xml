@@ -17,7 +17,7 @@
   <preference name="StatusBarStyle" value="lightcontent" />
   <preference name="StatusBarBackgroundColor" value="#ef473a" />
   <platform name="ios">
-    <icon src="res/icon/ios/icon.png" platform="ios" width="120" height="120" />
+    <icon src="res/ios/icon.png" platform="ios" width="120" height="120" />
     <splash src="res/screen/ios/splash.png" platform="ios" />
   </platform>
   <feature name="StatusBar">
