@@ -6,8 +6,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('ExonianMobile', ['ionic', 'ExonianMobile.controllers', 'ExonianMobile.services'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+.run(function ($ionicPlatform) {
+  $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -16,7 +16,7 @@ angular.module('ExonianMobile', ['ionic', 'ExonianMobile.controllers', 'ExonianM
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {    
+.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $stateProvider
 
   .state('app', {
@@ -45,16 +45,16 @@ angular.module('ExonianMobile', ['ionic', 'ExonianMobile.controllers', 'ExonianM
       }
     }
   })
-    
+
   .state('app.category', {
-      url: "/category/:categoryName",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/category.html",
-          controller: 'CategoryController'
-        }
+    url: "/category/:categoryName",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/category.html",
+        controller: 'CategoryController'
       }
-    })
+    }
+  })
 
   .state('app.article', {
     url: "/article/:articleId",
@@ -65,14 +65,14 @@ angular.module('ExonianMobile', ['ionic', 'ExonianMobile.controllers', 'ExonianM
       }
     }
   })
-   
+
   .state('app.about', {
     url:"/about",
     views: {
       'menuContent': {
         templateUrl: "templates/about.html"
       }
-    }  
+    }
   })
 
   $urlRouterProvider.otherwise('/app/headlines');
