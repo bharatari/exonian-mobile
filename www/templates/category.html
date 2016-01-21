@@ -1,38 +1,37 @@
 <ion-view>
-    <ion-nav-bar class="bar-assertive nav-title-slide-ios7">
-        <ion-nav-buttons side="left">
-            <button class="button button-icon button-clear ion-navicon nav-button" menu-toggle="left">
-            </button>
-        </ion-nav-buttons>
-        <ion-nav-title>
-            <p class="nav-title-text">{{Title}}</p>
-        </ion-nav-title>
-    </ion-nav-bar>
-    <ion-content has-bouncing="true">
-        <ion-refresher 
-                spinner="android"
-                pulling-icon="ion-android-arrow-down"
-                on-refresh="refresh()">
-            </ion-refresher>
-        <div ng-if="!error">
-            
-            <ion-list>
-                <div>
-                    <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}">
-                        <p class="article-title" ng-bind-html="Post.title"></p>
-                        <span class="article-author-subtitle">{{Post.Author}}</span>
-                    </ion-item>
-                </div>
-            </ion-list>
-            <ion-infinite-scroll
-                ng-if="checkData()"
-                spinner="android"                 
-                on-infinite="loadMore()">
-            </ion-infinite-scroll>
+  <ion-nav-bar class="bar-assertive nav-title-slide-ios7">
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon nav-button" menu-toggle="left">
+      </button>
+    </ion-nav-buttons>
+      <ion-nav-title>
+        <p class="nav-title-text">{{Title}}</p>
+      </ion-nav-title>
+  </ion-nav-bar>
+  <ion-content has-bouncing="true">
+    <ion-refresher
+      spinner="android"
+      pulling-icon="ion-android-arrow-down"
+      on-refresh="refresh()">
+    </ion-refresher>
+    <div ng-if="!error">
+      <ion-list>
+        <div>
+          <ion-item ng-repeat="Post in Posts" href="#/app/article/{{Post.id}}">
+            <p class="article-title" ng-bind-html="Post.title"></p>
+            <span class="article-author-subtitle">{{Post.Author}}</span>
+          </ion-item>
         </div>
-        <div ng-if="error">
-            <p class="error-message">Check your internet connection and try again.</p>
-        </div>
-    </ion-content>
+      </ion-list>
+      <ion-infinite-scroll
+        ng-if="checkData()"
+        spinner="android"
+        on-infinite="loadMore()">
+      </ion-infinite-scroll>
+    </div>
+    <div ng-if="error">
+      <p class="error-message">Check your internet connection and try again.</p>
+    </div>
+  </ion-content>
 </ion-view>
 
