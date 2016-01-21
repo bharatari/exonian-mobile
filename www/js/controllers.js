@@ -18,17 +18,11 @@ angular.module('ExonianMobile.controllers', ['ionic'])
         PostsFactory.getFeaturedPost().success(function(response) {
             $scope.Featured = UtilityFactory.processFeatured(response);
             $scope.FeaturedImage = UtilityFactory.getFeaturedImage($scope.Featured);
-            try {
-                var img = new Image();
-                img.addEventListener("load", function() {
-                  $('.nav-bar-large').attr("style", "background-image:url(" + $scope.FeaturedImage + ");");
-                  //$('.featured-image').attr("src", $scope.FeaturedImage);
-                }, false);
-                img.src = $scope.FeaturedImage;
-            } catch (err) {
-            
-            }
-            
+            var img = new Image();
+            img.addEventListener("load", function() {
+              $('.nav-bar-large').attr("style", "background-image:url(" + $scope.FeaturedImage + ");");
+            }, false);
+            img.src = $scope.FeaturedImage;
         }).error(function(err) {
             $scope.error = true;
         });
